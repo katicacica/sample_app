@@ -9,7 +9,7 @@ describe SessionsController do
       get :new
       response.should be_success
     end
-    
+
     it "should have the right title" do
       get :new
       response.should have_selector("title", :content => "Sign in")
@@ -39,8 +39,6 @@ describe SessionsController do
         flash.now[:error].should =~ /invalid/i
       end
     end
-
-    describe "with valid email and password" do
 
       before(:each) do
         @user = Factory(:user)
@@ -77,5 +75,15 @@ describe SessionsController do
       end
     end
   end
-end
 
+  describe "DELETE 'destroy'" do
+
+    it "should sign a user out" do
+      test_sign_in(Factory(:user))
+      delete :destroy
+      controller.should_not be_signed_in
+      response.should redirect_to(root_path)
+    end
+  end
+end
+end
