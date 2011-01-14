@@ -7,8 +7,8 @@
   </td>
   <% if current_user?(micropost.user) %>
   <td>
-    <%= link_to "delete", micropost, :method => :delete,
-                                     :confirm => "Biztos?",
+    <%= link_to "Törlés", micropost, :method => :delete,
+                                     :confirm => "Biztos torolni akarod a postot?",
                                      :title => micropost.content %>
   </td>
   <% end %>
